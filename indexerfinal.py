@@ -1,9 +1,3 @@
-'''
-Created on Dec 2, 2019
-
-@author: tylerli
-'''
-
 from collections import defaultdict
 from collections import namedtuple
 
@@ -12,16 +6,12 @@ import json
 import urllib
 import math
 
-from nltk.stem import PorterStemmer 
-from bs4 import BeautifulSoup
-from bs4.element import Comment
+from parser import *
 
-#ANALYST: number of documents is 1130
-#DEV: number of documents is 50553 
 Posting = namedtuple("Posting", "docid tfidf")
 
 def main():
-    id_num = initial_index("DEV", 0, 1)
+    id_num = initial_index("WEB PAGES", 0, 1)
     doc_id = id_num[0]
     number_of_batches = id_num[1] 
     merger(number_of_batches, "dev_og_index_pos.txt")
@@ -125,59 +115,7 @@ def count_to_tfidf(data_dict: str, num_doc: int):
         pos_dict.write(str(positions_dict))
     
 
-def tokenize(text: str) -> list:
-    token_list = []
-    temp = ""
-    if text == "":
-        return token_list
-    for character in text:
-        character = character.lower()
-        if (character.isalpha() or character.isdigit()) and character.isascii():
-            temp = temp + character
-        else:
-            if (temp != "") and (len(temp) > 2):
-                token_list.append(temp)
-            temp = ""
-    if temp != "":
-        token_list.append(temp)
-    return token_list
 
-
-def computeWordFrequencies(ListNormal: list, ListImportant: list) -> defaultdict:
-    ps = PorterStemmer()
-    token_dict = defaultdict(int)
-    for word in ListNormal:
-        word = ps.stem(word).lower()
-        token_dict[word] = token_dict[word] + 1
-    for word in ListImportant:
-        word = ps.stem(word).lower()
-        token_dict[word] = token_dict[word] + 0.2
-    return token_dict
-
-def wordCount(dictionary: defaultdict) -> int:
-    counter = 0
-    for key in dictionary.keys():
-        counter += 1
-    return counter
-
-def isAscii(word: str) -> bool:
-    return len(word) == len(word.encode())
-
-def tag_visible(element):   #Function from StackOverflow
-    if element.parent.name in ['style', 'script', 'meta', '[document]']:
-        return False
-    if isinstance(element, Comment):
-        return False
-    return True
-
-def text_from_html(content) -> (str, str):    #Function from StackOverflow    
-    soup = BeautifulSoup(content, 'html.parser')
-    important_words = ""
-    for x in soup.find_all(['b', 'h1', 'h2', 'h3', 'title']):
-        important_words += str(x.text) + " "
-    texts = soup.findAll(text=True)
-    visible_texts = filter(tag_visible, texts)
-    return (u" ".join(t.strip() for t in visible_texts), important_words)
     
 
 main()
