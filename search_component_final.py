@@ -1,8 +1,3 @@
-'''
-Created on Dec 2, 2019
-
-@author: tylerli
-'''
 
 from collections import defaultdict 
 from collections import namedtuple
@@ -13,7 +8,7 @@ import math
 
 Posting = namedtuple("Posting", "docid tfidf")
 
-def search_results(query: str, doc_len_loaded: list, data_dict: str, pos_dict_loaded: dict, doc_ids: dict, num_of_doc: int): #query: University of California Irvine
+def search_results(query: str, doc_len_loaded: list, data_dict: str, pos_dict_loaded: dict, doc_ids: dict, num_of_doc: int):
     ps = PorterStemmer()
     scores = defaultdict(int)
     read_stream = open(data_dict, "r")

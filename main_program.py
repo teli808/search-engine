@@ -18,6 +18,6 @@ def main():
         user_query = input("Please input a search query or !quit to exit: ")
         if user_query == "!quit":
             return
-        search_component_final.search_results(str(user_query), doc_len_loaded, "dev_full_index_with_tfidf.txt", pos_dict_loaded, doc_ids, 50553)
+        search_component_final.search_results(str(user_query), doc_len_loaded, "dev_full_index_with_tfidf.txt", pos_dict_loaded, doc_ids, len(doc_ids))
     
 main()
