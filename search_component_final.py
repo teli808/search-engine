@@ -8,7 +8,7 @@ import math
 
 Posting = namedtuple("Posting", "docid tfidf")
 
-def search_results(query: str, doc_len_loaded: list, data_dict: str, pos_dict_loaded: dict, doc_ids: dict, num_of_doc: int):
+def search_results(query: str, doc_len_loaded: list, data_dict: str, pos_dict_loaded: dict, doc_ids: dict, num_of_doc: int) -> list:
     ps = PorterStemmer()
     scores = defaultdict(int)
     read_stream = open(data_dict, "r")
@@ -30,12 +30,15 @@ def search_results(query: str, doc_len_loaded: list, data_dict: str, pos_dict_lo
         else:
             scores[x] = 0
     sorted_score_tuples = sorted(scores.items(), key = lambda x: x[1], reverse = True)
+    top_5 = []
     if len(sorted_score_tuples):
-        print()
-        print("Top 10 results:")
-        for x in sorted_score_tuples[0:10]:
-            print(doc_ids[x[0]])
+        # print()
+        # print("Top 10 results:")
+        for x in sorted_score_tuples[0:5]:
+            top_5.append(x[0]) #add the URL portion of tuple to list
+        return top_5
     else:
-        print()
-        print("No results are available.")
+        # print()
+        # print("No results are available.")
+        return top_5
         
