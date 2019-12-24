@@ -15,5 +15,6 @@ This search engine is a multi-part program which indexes all web pages from a gi
 
 # How to Run:  
 Indexer component: Run **indexer_final.py** with the directory **WEB PAGES**.  For faster indexing, I included a smaller set of subdomains compared to what I ran on.
+
 Search engine component: Run **user_interface.py** after unzipping **precalculated_files.zip**.
 
