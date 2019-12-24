@@ -1,6 +1,5 @@
 # Zootgle Search Engine
 
-# Description: 
 This search engine is a multi-part program which indexes all web pages from a given directory, scores each document on the basis of TF-IDF and cosine similarity, and ultimately returns the most relevant webpages for a given search query. 
 
 # Indexing Statistics:
