@@ -10,7 +10,7 @@ This search engine is a multi-part program which indexes all web pages from a gi
     Final inverted index size (stored on disk): 322.9 MB
 		
   • Due to the large amount of pages in this domain, the program offloaded the inverted index to separate files on disk 6
-    times during this indexing process before being merged at the end.  This was due to working under memory constraints.
+    times during this indexing process before being merged at the end.  This was a result of working under memory constraints.
 
 # How to Run:  
 Indexer component: Run **indexer_final.py** with the directory **WEB PAGES**.  For faster indexing, I included a smaller set of subdomains compared to what I ran on.
