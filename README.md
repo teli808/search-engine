@@ -3,4 +3,4 @@
 Given a set of web pages, the indexer tokenizes all visible text from HTML, giving special weight to words in bold, H1, H2, H3, and title tags, then stores in an inverted index.  After a certain number of documents have been processed, the indexer offloads to an auxillary file, which can be adjusted based on the user's memory constraints.  Individual index files are merged together later.  The search engine component returns based off TF-IDF scoring and cosine similarity.  
 
 # How to Run
-Run the search engine with user_interface.py, but make sure to unzip the precalculated index files first.  If you would like to index the web pages on your own, use indexerfinal.py with the provided web pages.
+Run the search engine with user_interface.py, but make sure to unzip the precalculated files first.  If you would like to index the web pages on your own, use indexerfinal.py with the provided web pages.
